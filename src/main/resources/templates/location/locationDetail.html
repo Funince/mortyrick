@@ -1,0 +1,52 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'location')}">
+<body>
+<div class="container mt-4">
+    <h2>Location Details</h2>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th scope="row">ID</th>
+            <td th:text="${location.id}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td th:text="${location.name}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Type</th>
+            <td th:text="${location.type}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Dimension</th>
+            <td th:text="${location.dimension}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Residents</th>
+            <td>
+                <ul>
+                    <li th:each="resident : ${location.residents}">
+                        <a th:href="@{'/detail?id=' + ${#strings.substringAfter(resident, 'character/')}}" class="card-link" th:text="'Resident: '+${#strings.substringAfter(resident, 'character/')}"></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Location URL</th>
+            <td>
+                <a th:href="@{${location.url}}" th:text="${location.url}"></a>
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row">Created</th>
+            <td>
+                <a  th:text="@{${location.created}}" ></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

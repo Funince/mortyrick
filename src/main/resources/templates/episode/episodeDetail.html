@@ -1,0 +1,48 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'episode')}">
+
+<body>
+<div class="container mt-4">
+    <h2>Episode Details</h2>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th scope="row">ID</th>
+            <td th:text="${episode.id}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td th:text="${episode.name}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Air Date</th>
+            <td th:text="${episode.air_date}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Episode Code</th>
+            <td th:text="${episode.episode}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Characters</th>
+            <td>
+                <ul>
+                    <li th:each="character : ${episode.characters}">
+
+                        <th:block th:with="CharacterNumber=${#strings.substringAfter(character, 'character/')}">
+                            <a th:href="@{'/detail?id=' + ${CharacterNumber}}" class="card-link" th:text="'Character: '+${CharacterNumber}"></a>
+                        </th:block>
+
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Created</th>
+            <td>
+                <a th:text="${episode.created}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

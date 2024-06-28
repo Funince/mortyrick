@@ -1,0 +1,48 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'location')}">
+<body>
+<div class="container mt-5">
+    <h2>Search Episodes</h2>
+    <form action="/location/find/results" method="get" class="form-inline">
+        <div class="form-group mb-2">
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Location Name" oninput="toggleFields()">
+        </div>
+        <div class="form-group mb-2">
+            <label for="type" class="sr-only">Type</label>
+            <input type="text" class="form-control" id="type" name="type" placeholder="Type" oninput="toggleFields()">
+        </div>
+        <div class="form-group mb-2">
+            <label for="dimension" class="sr-only">Dimension</label>
+            <input type="text" class="form-control" id="dimension" name="dimension" placeholder="Dimension" oninput="toggleFields()">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </form>
+
+
+</div>
+
+<script>
+    function toggleFields() {
+        var nameField = document.getElementById("name");
+        var typeField = document.getElementById("type");
+        var dimensionField = document.getElementById("dimension")
+        if (nameField.value) {
+            typeField.disabled = true;
+            dimensionField.disabled=true;
+        } else if (typeField.value) {
+            nameField.disabled = true;
+            dimensionField.disabled=true;
+        }else if(dimensionField.value) {
+            nameField.disabled = true;
+            typeField.disabled = true;
+        }else {
+            nameField.disabled = false;
+            typeField.disabled = false;
+            dimensionField.disabled=false;
+        }
+    }
+</script>
+
+</body>
+</html>

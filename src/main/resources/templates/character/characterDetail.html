@@ -1,0 +1,55 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'character')}">
+
+
+<body>
+<div class="container mt-4">
+
+        <div class="d-flex align-items-top">
+            <div style="margin-right: 5%">
+            <img th:src="${character.image}" class="card-img-left" alt="Character Image">
+            </div>
+                    <div class="col-ml-16">
+                        <div class="card-body">
+                            <h5 class="card-title">Character Details</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Name:</strong> <span th:text="${character.name}"></span></li>
+                                <li class="list-group-item"><strong>Status:</strong> <span th:text="${character.status}"></span></li>
+                                <li class="list-group-item"><strong>Species:</strong> <span th:text="${character.species}"></span></li>
+                                <li class="list-group-item"><strong>Type:</strong> <span th:text="${character.type}"></span></li>
+                                <li class="list-group-item"><strong>Gender:</strong> <span th:text="${character.gender}"></span></li>
+                                <li class="list-group-item"><strong>Origin:</strong> <span th:text="${character.origin.name}"></span></li>
+                                <li class="list-group-item"><strong>Current Location:</strong> <span th:text="${character.location.name}"></span></li>
+                                <li class="list-group-item"><strong>URL:</strong> <span th:text="${character.url}"></span></li>
+                                <li class="list-group-item"><strong>Created:</strong> <span th:text="${character.created}"></span></li>
+                                <li class="list-group-item">
+                                    <strong>Episodes:</strong>
+                                    <ul>
+
+                                        <li th:each="episode : ${character.episode}">
+
+                                            <th:block th:with="episodeNumber=${#strings.substringAfter(episode, 'episode/')}">
+                                                <a th:href="@{'/episode?id=' + ${episodeNumber}}" class="card-link" th:text="'Episode: '+${episodeNumber}"></a>
+                                            </th:block>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <button class="btn btn-secondary" onclick="goBack()">Back</button>
+                        </div>
+                    </div>
+
+
+        </div>
+
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>

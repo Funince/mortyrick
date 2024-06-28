@@ -1,0 +1,43 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'location')}">
+
+<body>
+
+<div class="container">
+    <h1 class="my-4">Search Results</h1>
+    <div th:if="${message}">
+        <p th:text="${message}" class="alert alert-info"></p>
+    </div>
+    <div th:if="${locations}" class="row">
+        <div class="col-lg-4 col-md-6 mb-4" th:each="location : ${locations}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${location.name}">Character Name</h4>
+                    <h4 class="card-title" th:text="${location.type}">type</h4>
+                    <h4 class="card-title" th:text="${location.dimension}">dimension</h4>
+
+                </div>
+                <a th:href="@{'/location?id=' + ${location.id}}" class="btn btn-primary" >View details</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Paginación -->
+<div th:if="${info.pages > 1}">
+    <nav>
+        <ul class="pagination">
+
+            <li th:each="pageNum : ${#numbers.sequence(1, info.pages)}"
+                th:class="${pageNum} == ${info.next} ? 'page-item active' : 'page-item' ">
+                <a class="page-link" th:href="@{/location/find/results(name=${name}, page=${pageNum})}" th:text="${pageNum}">1</a>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+<a class="btn btn-primary" href="/location/find">Back to search</a>
+
+
+</body>
+</html>
