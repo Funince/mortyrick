@@ -43,15 +43,29 @@ Ejemplo de URL base local: http://localhost:8080
 Enviar Consultas:
 
 Buscar Personajes: Utiliza el endpoint /character/find/results con parámetros name y opcionalmente page.
+
+
 URL: http://localhost:8080/character/find/results?name=Rick&page=1
+
+
 Buscar Episodios: Utiliza el endpoint /episode/find/results con parámetros name o episode y opcionalmente page.
+
+
 URL: http://localhost:8080/episode/find/results?name=Pilot&episode=S01E01&page=1
+
+
 Buscar Ubicaciones: Utiliza el endpoint /location/find/results con parámetros name o type o dimension y opcionalmente page.
+
 URL: http://localhost:8080/location/find/results?type=Planet
+
 Detalles de Personaje, Episodio o Ubicación: Utiliza los endpoints /detail, /episode o /location con el parámetro id.
+
 URL para detalle de personaje: http://localhost:8080/detail?id=1
+
 URL para detalle de episodio: http://localhost:8080/episode?id=1
+
 URL para detalle de ubicación: http://localhost:8080/location?id=1
+
 Revisar Respuestas: Postman mostrará las respuestas de la API en formato JSON o HTML según cómo estén configuradas tus vistas en Spring Boot.
 
 Consideraciones Adicionales
